@@ -16,7 +16,15 @@ function runWorker(number) {
     })
 }
 
-// Execute worker thread
-runWorker(1000)
-    .then(result => console.log(`Factorial : ${result}`))
-    .catch(error => console.error(error));
+// // Execute worker thread
+// runWorker(1000)
+//     .then(result => console.log(`Factorial : ${result}`))
+//     .catch(error => console.error(error));
+
+
+// Running multiple workers
+const numbers = [10, 15, 20, 25];
+
+Promise.all(numbers.map(runWorker))
+    .then(results => console.log('Factorials:', results))
+    .catch(err => console.error(err));
